@@ -8,5 +8,6 @@ namespace CadastroContatos.Repository
         List<ContatoModel> SearchAll();
         ContatoModel Add(ContatoModel contato);
         ContatoModel Atualizar(ContatoModel contato);
+        bool ConfApagar(int id);
     }
 }

@@ -40,9 +40,16 @@ namespace CadastroContatos.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Apagar()
+        public IActionResult Apagar(int id)
         {
-            return View();
+            ContatoModel contato = _contatoRepository.ListId(id);
+            return View(contato);
+        }
+
+        public IActionResult ConfApagar(int id)
+        {
+            _contatoRepository.ConfApagar(id);
+            return RedirectToAction("Index");
         }
     }
 }

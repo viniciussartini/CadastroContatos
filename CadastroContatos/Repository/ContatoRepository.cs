@@ -45,5 +45,19 @@ namespace CadastroContatos.Repository
 
             return contatoDb;
         }
+
+        public bool ConfApagar(int id)
+        {
+            ContatoModel contatoDb = ListId(id);
+            if (contatoDb == null)
+            {
+                throw new System.Exception("Houve um erro na exclusão do contato");
+            }
+
+            _bancoContext.Contatos.Remove(contatoDb);
+            _bancoContext.SaveChanges();
+
+            return true;
+        }
     }
 }
