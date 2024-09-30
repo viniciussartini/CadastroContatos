@@ -28,9 +28,16 @@ namespace CadastroContatos.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Editar()
+        public IActionResult Editar(int id)
         {
-            return View();
+            ContatoModel contato = _contatoRepository.ListId(id);
+            return View(contato);
+        }
+        [HttpPost]
+        public IActionResult Alterar(ContatoModel contato)
+        {
+            _contatoRepository.Atualizar(contato);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Apagar()

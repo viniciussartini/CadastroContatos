@@ -22,5 +22,28 @@ namespace CadastroContatos.Repository
             _bancoContext.SaveChanges();
             return contato;
         }
+
+        public ContatoModel ListId(int id)
+        {
+            return _bancoContext.Contatos.FirstOrDefault(x => x.Id == id);
+        }
+
+        public ContatoModel Atualizar(ContatoModel contato)
+        {
+            ContatoModel contatoDb = ListId(contato.Id);
+            if (contatoDb == null)
+            {
+                throw new System.Exception("Houve um erro na atualização do contato");
+            }
+
+            contatoDb.Nome = contato.Nome;
+            contatoDb.Email = contato.Email;
+            contatoDb.Telefone = contato.Telefone;
+
+            _bancoContext.Contatos.Update(contatoDb);
+            _bancoContext.SaveChanges();
+
+            return contatoDb;
+        }
     }
 }
